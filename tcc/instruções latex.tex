@@ -1,0 +1,375 @@
+\documentclass[
+	article,
+	12pt,
+	oneside,
+	a4paper,
+	english,
+	brazil,
+	sumario=tradicional
+]{abntex2}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{indentfirst}
+\usepackage{nomencl}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{microtype}
+
+\usepackage[subentrycounter,seeautonumberlist,nonumberlist=true]{glossaries-extra}
+
+\usepackage{caption}
+\usepackage[scaled]{helvet}
+\usepackage{svg}
+
+\renewcommand{\familydefault}{\sfdefault}
+
+\usepackage{lipsum}
+
+\usepackage[brazilian,hyperpageref]{backref}
+\usepackage[alf]{abntex2cite}
+
+\renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
+
+\renewcommand{\backref}{}
+
+\renewcommand*{\backrefalt}[4]{
+	\ifcase #1 %
+		Nenhuma citação no texto.%
+	\or
+		Citado na página #2.%
+	\else
+		Citado #1 vezes nas páginas #2.%
+	\fi}%
+
+\titulo{TÍTULO DO ARTIGO: SUBTÍTULO (SE HOUVER)}
+
+\autor{
+	Nome Primeiro Aluno\texorpdfstring{\textsuperscript{*}}{}
+	\\
+	Nome Segundo Aluno\texorpdfstring{\textsuperscript{*}}{}
+	\\
+	Nome Terceiro Aluno\texorpdfstring{\textsuperscript{*}}{}
+	\\
+	Prof. Esp./Me./Dr. Nome Orientador\texorpdfstring{\textsuperscript{**}}{}
+}
+\local{Brasil}
+
+\makeatletter
+\def\@maketitle{%
+	\newpage
+
+	\begin{center}
+		\includesvg[width=8cm]{figuras/logo.svg}
+		\vskip 3em%
+		{\textbf{\@title}}
+	\end{center}
+
+	\begin{flushright}
+		\let\footnote\thanks
+		\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+		\setcounter{footnote}{0}
+		\vskip 1.5em
+		\begin{tabular}[t]{r@{}}
+			\@author
+		\end{tabular}
+	\end{flushright}
+
+	\renewcommand{\thefootnote}{\textsuperscript{*}}
+	\footnotetext{Discentes – Curso Superior de Tecnologia em ??? – Faculdade de Tecnologia de Ourinhos – Fatec Ourinhos – \{primeiro.aluno,segundo.aluno\}@fatec.sp.gov.br }
+	\renewcommand{\thefootnote}{\textsuperscript{**}}
+	\footnotetext{Professor Orientador – Curso Superior de Tecnologia em ??? – Faculdade de Tecnologia de Ourinhos – Fatec Ourinhos - email.professor@fatecourinhos.edu.br}
+	\par
+}
+\makeatother
+
+\definecolor{blue}{RGB}{41,5,195}
+
+\makeatletter
+\hypersetup{
+	%pagebackref=true,
+	pdftitle={\@title}, 
+	pdfauthor={\@author},
+	pdfsubject={Modelo de Artigo Científico da Faculdade de Tecnologia de Ourinhos nas Normas ABNT},
+	pdfcreator={Fatec Ourinhos},
+	pdfkeywords={abnt}{fatec}{ourinhos}{artigo}, 
+	colorlinks=true,
+	linkcolor=blue,
+	citecolor=blue,
+	filecolor=magenta,
+	urlcolor=blue,
+	bookmarksdepth=4
+}
+\makeatother
+
+\setlrmarginsandblock{3cm}{3cm}{*}
+\setulmarginsandblock{3cm}{3cm}{*}
+\checkandfixthelayout
+
+\setlength{\parindent}{1.3cm}
+
+\setlength{\parskip}{0.2cm}
+
+\SingleSpacing
+
+\makeglossaries
+
+\newglossaryentry{pai}{
+	name={pai},
+	plural={pai},
+	description={este é uma entrada pai, que possui outras subentradas.}
+}
+
+\newglossaryentry{filho}{
+	name={filho},
+	plural={filhos},
+	parent=pai,
+	description={isto é uma entrada filha da entrada de nome \gls{pai}. Trata-se de uma entrada irmã da entrada \gls{componente}.}
+}
+
+\newglossaryentry{componente}{
+	name={componente},
+	plural={componentes},
+	parent=pai,
+	description={descrição da entrada componente.}
+}
+ 
+\newglossaryentry{equilibrio}{
+	name={equilíbrio da configuração},
+	see=[veja também]{componente},
+	description={consistência entre os \glspl{componente}}
+}
+
+\newglossaryentry{latex}{
+	name={LaTeX},
+	description={ferramenta de computador para autoria de documentos criada por D. E. Knuth}
+}
+
+\newglossaryentry{abntex2}{
+	name={abnTeX2},
+	see=latex,
+	description={suíte para LaTeX que atende os requisitos das normas da ABNT para elaboração de documentos técnicos e científicos brasileiros}
+}
+
+\begin{document}
+
+\selectlanguage{brazil}
+
+\frenchspacing
+
+\maketitle
+
+\begin{resumoumacoluna}
+Elemento obrigatório. Para escrever um resumo para um artigo científico seguindo as normas da ABNT (NBR 6028), é necessário apresentar um texto conciso e objetivo, entre 150 e 500 palavras. O resumo deve expor, de forma clara e estruturada, o tema do trabalho, os objetivos, a metodologia utilizada, os principais resultados e a conclusão, sem incluir citações ou referências bibliográficas. Deve ser redigido em um único parágrafo, na terceira pessoa do singular e com verbos na voz ativa para garantir clareza e impessoalidade. Além disso, é obrigatório incluir palavras-chave logo abaixo do resumo, separadas por ponto e que representem os principais conceitos abordados no artigo. Vale observar que o documento deve ter limite mínimo de 10 páginas para a defesa e para a qualificação o mínimo é de 6 páginas.
+
+\vspace{\onelineskip}
+
+\noindent
+\textbf{Palavras-chave}: Artigo científico. Modelo. Faculdade de Tecnologia de Ourinhos.
+\end{resumoumacoluna}
+
+\renewcommand{\resumoname}{ABSTRACT}
+\begin{resumoumacoluna}
+	\begin{otherlanguage*}{english}
+		\textit{Elemento obrigatório. Resumo em língua inglesa. Itálico.}
+		\vspace{\onelineskip}
+
+		\noindent
+		\textbf{Keywords}: \textit{Scientific article. Model. Faculdade de Tecnologia de Ourinhos.}
+	\end{otherlanguage*}  
+\end{resumoumacoluna}
+
+\textual
+
+\section{\textbf{INTRODUÇÃO}}
+
+Elemento obrigatório. A introdução do trabalho deve apresentar a definição do tema de forma geral, delimitar o assunto estudado, estabelecer os objetivos gerais, justificar a escolha do tema e mostrar sua importância. O texto deve ser digitado com espaçamento simples e mantido de forma padronizada em todo o artigo. Segundo a ABNT, um artigo técnico e/ou científico é definido como "parte de uma publicação, com autoria declarada, de natureza técnica e/ou científica." \cite{NBR6022:2018}
+
+De acordo com a \citeonline{NBR14724:2011}, o texto do artigo deve ser padronizado com fonte tamanho 12. Para citações longas, notas de rodapé, numeração de páginas, legendas e fontes de ilustrações e tabelas, recomenda-se o uso de um tamanho menor e uniforme, preferencialmente 10. Neste modelo, foi utilizada a fonte "Arial".
+
+O papel deve ser no tamanho A4 (21,0 cm x 29,7 cm), com as seguintes margens: 3 cm superior, 3 cm esquerda, 2 cm inferior e 2 cm direita.
+
+Esta seção não pode ser fragmentada em subcapítulos.
+
+\section{\textbf{REFERENCIAL TEÓRICO}}
+
+Elemento obrigatório. O capítulo de referencial teórico de um artigo científico tem a função de embasar a pesquisa por meio da revisão de literatura, apresentando conceitos, teorias e estudos já realizados sobre o tema. Nele, devem ser expostas as fontes que sustentam o problema de pesquisa, permitindo a contextualização do estudo e demonstrando seu alinhamento com o conhecimento existente. É essencial que as fontes sejam atualizadas, relevantes e devidamente citadas conforme  \citeonline{abntex2cite-alf}. O texto deve ser estruturado de maneira lógica e coesa, abordando diferentes perspectivas sobre o assunto e identificando lacunas que justificam a necessidade do estudo. Além disso, é importante que o referencial teórico esteja diretamente relacionado aos objetivos do artigo, garantindo que os fundamentos teóricos contribuam para a construção da análise e discussão dos resultados.
+
+\subsection{Citações e notas de rodapé}
+
+Notas de rodapé\footnote{Exemplo de como inserir a primeira nota de rodapé (usar fonte tamanho 10)} devem\footnote{Exemplo de como inserir mais uma nota de rodapé} ser conforme a \citeonline{NBR10520:2002}. Notas de tabelas devem apresentados conforme as Normas do Instituto Brasileiro de Geografia e Estatística (IBGE).
+
+No referencial, pode-se usar tópicos e subtópicos para fundamentar a pesquisa.
+
+Deve-se fazer uso de citações diretas longas e curtas e citações indiretas, para reforçar e fundamentar as ideias apresentadas. Dê preferência às citações indiretas. 
+
+As citações indiretas expressam a ideia do autor e são compostas pelo sobrenome e ano. Elas podem ser usadas no início ou no final do parágrafo.
+
+Início do parágrafo:
+
+\begin{itemize}
+    \item Um autor: Para Oliveira (2023), a motivação do consumidor é um fator que influencia o uso da informação sobre o país de origem;
+    \item Dois autores: Para Oliveira e Silva (2023), a motivação do consumidor é um fator que influencia o uso da informação sobre o país de origem;
+    \item Três autores: Para Oliveira, Silva e Camargo (2023), a motivação do consumidor é um fator que influencia o uso da informação sobre o país de origem;
+    \item Mais de três: Para Oliveira et al. (2023), a motivação do consumidor é um fator que influencia o uso da informação sobre o país de origem.
+\end{itemize}
+
+Se a citação estiver no final da frase, ficará:
+
+\begin{itemize}
+    \item Um autor: A motivação do consumidor é um fator que influencia o uso da informação sobre o país de origem (Oliveira, 2023);
+    \item Dois autores: (Oliveira; Silva, 2023), três autores: (Oliveira; Silva; Camargo, 2023), mais de três: (Oliveira et al., 2023).
+\end{itemize}
+
+Já a citação direta corresponde à transcrição textual de parte da obra do autor consultado e deve ser descrita como na citação indireta, incluindo o número da página (Sobrenome, ano, p.). Pode ser usada citação direta curta ou longa.
+
+A citação direta curta corresponde a um texto de no máximo 3 linhas e deve estar entre aspas. Exemplo: De acordo com Fernandes (2019, p.76), "o cliente deseja receber um atendimento de qualidade e personalizado, que atenda às suas necessidades".
+
+As citações diretas longas possuem mais de 3 linhas e deve fazer uso de recuo de 4 cm da margem esquerda, com fonte tamanho 10, espaçamento simples e sem aspas:
+
+\begin{citacao}
+Esta frase usa a palavra \gls{componente} e o plural de \glspl{filho}, ambas
+definidas no glossário como filhas da entrada \gls{pai}. \Gls{equilibrio}
+exemplifica o uso de um termo no início da frase. O software \gls{abntex2} é
+escrito em \gls{latex}, que é definido no glossário como
+\emph{`\glsdesc*{latex}'}. \cite{abntex2-wiki-como-customizar}.
+\end{citacao}
+
+\subsection{Figuras}
+
+Caso haja figuras, sua identificação deve ser centralizada e posicionada na parte superior, precedida da palavra designativa, seguida pelo número de ordem em algarismos arábicos e pelo respectivo título e/ou legenda explicativa. Abaixo da ilustração, é obrigatório indicar a fonte consultada, mesmo quando for de autoria própria, conforme as normas da ABNT NBR 10520, além de incluir legendas, notas e outras informações relevantes para sua compreensão, se necessário. As figuras devem ser citadas no texto e inseridas o mais próximo possível do trecho ao qual se referem (ABNT, 2018). Além disso, o tipo, número de ordem, título, fonte, legendas e notas devem acompanhar as margens da ilustração.
+
+\begin{figure}[ht]
+	\centering
+	\caption{Exemplo de figura.}
+	\includegraphics[width=0.8\textwidth]{figuras/exemplo.jpg}
+	\caption*{\\Fonte: elaborado pelo autor.}
+	\label{fig.figura_exemplo}
+\end{figure}
+
+\subsection{Equações}
+
+Para melhor compreensão, as equações e fórmulas devem ser destacadas no texto e, quando necessário, numeradas com algarismos arábicos entre parênteses, alinhados à direita, como na Equação \ref{eq.bhaskara} e na Equação \ref{eq.einstein}. Na sequência normal do texto, é permitido utilizar um espaçamento maior entre as linhas para acomodar seus elementos, como expoentes, índices e outros símbolos.
+
+\begin{equation}
+	\label{eq.bhaskara}
+	x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}
+\end{equation}
+
+\begin{equation}
+	\label{eq.einstein}
+	E=mc^2
+\end{equation}
+
+De acordo com a Equação \ref{eq.bhaskara} etc etc etc...
+
+\subsection{Pseudo-código ou Algoritmos}
+
+Recomenda-se disponibilizar no artigo apenas os trechos mais importantes quando existir implementação de código. Ademais, converse com seu orientador sobre a necessidade de adicionar código-fonte ao texto e como fazê-lo.
+
+\begin{verbatim}
+#!/bin/bash
+
+cat /etc/passwd | while read linha ;do
+	col1=$(echo $linha | awk -F: 'print $1') 
+	echo $col1
+done
+\end{verbatim}
+
+\subsection{Tabelas}
+
+As tabelas devem ser citadas no texto e inseridas o mais próximo possível do trecho ao qual se referem, seguindo a padronização estabelecida pelas Normas de Apresentação Tabular do IBGE. É obrigatório indicar a fonte consultada, mesmo quando se trata de produção do próprio autor, conforme as diretrizes da ABNT NBR 10520. Segundo o Instituto Brasileiro de Geografia e Estatística (1993), uma tabela é uma forma de apresentação de dados numéricos. Um exemplo é apresentado na Tabela \ref{tab:clubes}.
+
+\begin{table}[ht]
+	\centering
+	\caption{Porcentagem de reprovação de diciplinas.}
+	\begin{tabular}{l c c}
+		\toprule
+		DISCIPLINA & ANO & \% REPROVAÇÃO \\ 
+		\midrule
+		Lógica de Programação            & 2024 & 70 \\
+		Engenharia de Software           & 2023 & 60 \\
+		Inglês                           & 2023 & 30 \\
+		\bottomrule
+	\end{tabular}
+	\caption*{\\Fonte: Elaborado pelo autor.}
+	\label{tab:clubes}
+\end{table}
+
+Caso existam dúvidas adicionais sobre a construção de tabelas ou quadros, fale com seu orientador. Uma boa fonte de ajuda é o site \url{https://www.tablesgenerator.com}.
+
+\section{\textbf{METODOLOGIA}}
+
+Elemento obrigatório. A seção de Metodologia em um texto científico deve descrever, de forma clara e objetiva, os instrumentos e procedimentos adotados na pesquisa, permitindo que outros pesquisadores possam replicá-la. Deve-se iniciar apresentando o tipo de pesquisa realizada (quantitativa, qualitativa, experimental, descritiva, exploratória, entre outras) e justificar sua escolha. Em seguida, é necessário detalhar os métodos utilizados para a coleta de dados, como questionários, entrevistas, análise documental ou experimentação. Também é importante especificar a população e a amostra do estudo, bem como os critérios de seleção dos participantes ou dos dados analisados. Além disso, devem ser descritos os procedimentos de análise dos dados, mencionando ferramentas estatísticas, técnicas de interpretação ou softwares utilizados. Para garantir a transparência e a validade da pesquisa, é fundamental relatar eventuais limitações do estudo e assegurar o cumprimento de princípios éticos, especialmente em pesquisas envolvendo dados sensíveis e seres humanos.
+
+\section{\textbf{RESULTADOS (PARA TRABALHOS DE QUALIFICAÇÃO USAR “RESULTADOS PARCIAIS” OU “RESULTADOS ESPERADOS”)}}
+
+Elemento obrigatório. A seção de Resultados em um texto científico apresenta os achados obtidos a partir da aplicação da metodologia descrita anteriormente. Deve ser escrita de forma clara, objetiva e organizada, destacando os dados mais relevantes da pesquisa. Os resultados podem ser apresentados por meio de tabelas, gráficos, figuras ou descrições textuais, sempre seguindo as normas de formatação adequadas, como as da ABNT (NBR 14724 e NBR 6022). É essencial que os dados sejam expostos de maneira imparcial, sem interpretações ou discussões detalhadas, pois essa análise será feita na seção de Discussão. Caso necessário, os resultados podem ser organizados em subtópicos, facilitando a compreensão. Além disso, é importante garantir a coerência entre os objetivos do estudo e os achados apresentados, assegurando que os dados respondam às perguntas de pesquisa formuladas.
+
+\section{\textbf{CRONOGRAMA (APENAS PARA TRABALHOS DE QUALIFICAÇÃO)}}
+
+Deve especificar as etapas (mês a mês) que os autores planejam seguir para a finalização da pesquisa. Exemplo:
+
+\begin{table}[ht]
+	\centering
+	\caption{Cronograma proposto para continuidade da pesquisa.}
+	\begin{tabular}{l c c c c c}
+		\toprule
+		ETAPA & AGO & SET & OUT & NOV & DEZ \\ 
+		\midrule
+		Correções apontadas pela banca de qualificação & x &   &   &   &   \\ 
+		Atualização do referencial teórico             & x & x &   &   &   \\ 
+		Obtenção dos dados                             &   & x & x &   &   \\ 
+		Pré-processamento dos dados                    &   &   & x &   &   \\ 
+		Implementação dos algoritmos                   &   &   & x & x &   \\ 
+		Compilação dos resultados                      &   &   &   & x &   \\ 
+		Avaliação e análises para trabalhos futuros    &   &   &   & x & x \\ 
+		\bottomrule
+	\end{tabular}
+	\caption*{\\Fonte: Elaborado pelo autor.}
+	\label{tab:cronograma}
+\end{table}
+
+Cabe ressaltar que no cronograma deve constar apenas as etapas futuras. Os elementos usados na Tabela 2 são apenas de exemplo.
+
+\bookmarksetup{startatroot}% 
+
+\section{\textbf{CONCLUSÃO (USAR 6 EM CASO DE TRABALHOS DE QUALIFICAÇÃO, PELA EXISTÊNCIA DO CRONOGRAMA)}}
+
+A Conclusão de um texto científico é a seção na qual se sintetizam os principais achados do estudo, destacando se os objetivos propostos foram alcançados e quais as principais contribuições da pesquisa. Deve-se retomar os pontos essenciais discutidos ao longo do trabalho, mas sem repetir informações de forma redundante. Além disso, é possível apontar as limitações do estudo e sugerir caminhos para pesquisas futuras, indicando novas abordagens, metodologias ou questões que podem ser aprofundadas. A conclusão deve ser clara, objetiva e alinhada com os resultados apresentados, reforçando a relevância da pesquisa e seu impacto na área de conhecimento estudada.
+
+\postextual
+
+\section*{\textbf{REFERÊNCIAS}}
+
+Elemento obrigatório. As referências devem ser organizadas em ordem alfabética por sobrenome. Fale com seu orientador ou com seu professor de Metodologia de Pesquisa em caso de dúvidas. Algumas fontes online que podem ser úteis na geração das referências: \url{https://tinyurl.com/reffatecou0};  \url{https://tinyurl.com/reffatecou1}; \url{https://tinyurl.com/reffatecou2}; \url{https://tinyurl.com/reffatecou3}. Ferramentas com o ChatGPT, Google Gemini e afins podem ser úteis também para auxiliar na formatação das referências no padrão ABNT. \textbf{Apague este parágrafo no seu trabalho final}
+
+\renewcommand{\bibname}{}
+
+\bibliography{bibliografia}
+
+\renewcommand{\glossaryname}{\textbf{GLOSSÁRIO}}
+\renewcommand{\glossarypreamble}{
+	Elemento opcional. Deve ser elaborado em ordem alfabética.\\ \\
+}
+
+\setglossarystyle{tree}
+
+\printglossaries
+
+\vspace{\onelineskip}
+\vspace{\onelineskip}
+
+\chapter*{\textbf{APÊNDICE A – TÍTULO DO APÊNDICE}}
+
+O apêndice é elaborado pelo autor e é um elemento opcional. O apêndice deve ser identificado seguindo esta ordem: a palavra "Apêndice", acompanhada de uma letra maiúscula em sequência alfabética, seguida de um travessão e do respectivo título. O formato deve manter o destaque tipográfico das seções primárias e ser centralizado, conforme as diretrizes da ABNT NBR 6024. Caso as 26 letras do alfabeto sejam esgotadas, utilizam-se letras maiúsculas dobradas para a identificação dos apêndices.
+
+\vspace{\onelineskip}
+
+\cftinserthook{toc}{AAA}
+
+\chapter*{\textbf{ANEXO A – TÍTULO DO ANEXO}}
+
+O anexo é elaborado pelo autor e é um elemento opcional. O anexo deve ser identificado na seguinte ordem: a palavra "Anexo", seguida de uma letra maiúscula em sequência alfabética, um travessão e o respectivo título. A formatação deve manter o destaque tipográfico das seções primárias e ser centralizada, conforme as normas da ABNT NBR 6024. Caso todas as 26 letras do alfabeto sejam utilizadas, empregam-se letras maiúsculas dobradas para a identificação dos anexos.
+
+\end{document}

@@ -1,0 +1,409 @@
+\documentclass[
+	article,
+	12pt,
+	oneside,
+	a4paper,
+	english,
+	brazil,
+	sumario=tradicional
+]{abntex2}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{indentfirst}
+\usepackage{nomencl}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{microtype}
+
+\usepackage[subentrycounter,seeautonumberlist,nonumberlist=true]{glossaries-extra}
+
+\usepackage{caption}
+\usepackage[scaled]{helvet}
+\usepackage{svg}
+
+\renewcommand{\familydefault}{\sfdefault}
+
+\usepackage{lipsum}
+\usepackage{float} % adicionado
+% \usepackage{hyperref} % adicionado
+\usepackage[brazilian,hyperpageref]{backref}
+\usepackage[alf]{abntex2cite}
+
+\renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
+
+\renewcommand{\backref}{}
+
+\renewcommand*{\backrefalt}[4]{
+	\ifcase #1 %
+		Nenhuma citação no texto.%
+	\or
+		Citado na página #2.%
+	\else
+		Citado #1 vezes nas páginas #2.%
+	\fi}%
+
+\titulo{PROCESSAMENTO DE LINGUAGEM NATURAL: TASK 1}
+
+\autor{
+	Vinícius de Oliveira Silva\texorpdfstring{\textsuperscript{*}}{}
+	\\
+	Prof. Alex Marino Gonçalves de Almeida\texorpdfstring{\textsuperscript{**}}{}
+}
+\local{Brasil}
+
+\makeatletter
+\def\@maketitle{%
+	\newpage
+
+	\begin{center}
+		\includesvg[width=8cm]{figuras/logo.svg}
+		\vskip 3em%
+		{\textbf{\@title}}
+	\end{center}
+
+	\begin{flushright}
+		\let\footnote\thanks
+		\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+		\setcounter{footnote}{0}
+		\vskip 1.5em
+		\begin{tabular}[t]{r@{}}
+			\@author
+		\end{tabular}
+	\end{flushright}
+
+	\renewcommand{\thefootnote}{\textsuperscript{*}}
+	\footnotetext{Discentes – Curso Superior de Tecnologia em Ciência de Dados – Faculdade de Tecnologia de Ourinhos – Fatec Ourinhos – vinicius.infra@outlook.com }
+	\renewcommand{\thefootnote}{\textsuperscript{**}}
+	\footnotetext{Professor Orientador – Curso Superior de Tecnologia em Ciência de Dados – Faculdade de Tecnologia de Ourinhos – Fatec Ourinhos – alex.marino@fatecourinhos.edu.br}
+	\par
+}
+\makeatother
+
+\definecolor{blue}{RGB}{41,5,195}
+
+\makeatletter
+\hypersetup{
+	%pagebackref=true,
+	pdftitle={\@title}, 
+	pdfauthor={\@author},
+	pdfsubject={Modelo de Artigo Científico da Faculdade de Tecnologia de Ourinhos nas Normas ABNT},
+	pdfcreator={Fatec Ourinhos},
+	pdfkeywords={abnt}{fatec}{ourinhos}{artigo}, 
+	colorlinks=true,
+	linkcolor=blue,
+	citecolor=blue,
+	filecolor=magenta,
+	urlcolor=blue,
+	bookmarksdepth=4
+}
+\makeatother
+
+\setlrmarginsandblock{3cm}{3cm}{*}
+\setulmarginsandblock{3cm}{3cm}{*}
+\checkandfixthelayout
+
+\setlength{\parindent}{1.3cm}
+
+\setlength{\parskip}{0.2cm}
+
+\SingleSpacing
+
+\makeglossaries
+
+\newglossaryentry{pai}{
+	name={pai},
+	plural={pai},
+	description={este é uma entrada pai, que possui outras subentradas.}
+}
+
+\newglossaryentry{filho}{
+	name={filho},
+	plural={filhos},
+	parent=pai,
+	description={isto é uma entrada filha da entrada de nome \gls{pai}. Trata-se de uma entrada irmã da entrada \gls{componente}.}
+}
+
+\newglossaryentry{componente}{
+	name={componente},
+	plural={componentes},
+	parent=pai,
+	description={descrição da entrada componente.}
+}
+ 
+\newglossaryentry{equilibrio}{
+	name={equilíbrio da configuração},
+	see=[veja também]{componente},
+	description={consistência entre os \glspl{componente}}
+}
+
+\newglossaryentry{latex}{
+	name={LaTeX},
+	description={ferramenta de computador para autoria de documentos criada por D. E. Knuth}
+}
+
+\newglossaryentry{abntex2}{
+	name={abnTeX2},
+	see=latex,
+	description={suíte para LaTeX que atende os requisitos das normas da ABNT para elaboração de documentos técnicos e científicos brasileiros}
+}
+
+\begin{document}
+
+\selectlanguage{brazil}
+
+\frenchspacing
+
+\maketitle
+
+\begin{resumoumacoluna}
+Este trabalho apresenta a aplicação de técnicas fundamentais de Processamento de Linguagem Natural (PLN) a um corpus de poemas em língua portuguesa, com foco na obra de Fernando Pessoa e seus heterônimos. O dataset utilizado contém 15.543 poemas de múltiplos autores, dos quais 2.232 são atribuídos a Fernando Pessoa. Como os heterônimos não constam como autores distintos no dataset, desenvolveu-se um classificador baseado em padrões literários nos títulos. O pré-processamento incluiu conversão para minúsculas, remoção de pontuação e números, e eliminação de stopwords em português. A vetorização foi realizada com TF (CountVectorizer) e TF-IDF (TfidfVectorizer) da biblioteca scikit-learn que revelou os termos mais relevantes. A similaridade de cosseno entre vetores TF-IDF permitiu recuperar poemas tematicamente próximos, demonstrando a eficácia da abordagem para buscas semânticas. Conclui-se que o TF-IDF supera o TF puro na identificação de termos discriminativos, e que a aplicação dessas técnicas em textos poéticos apresenta desafios particulares relacionados à linguagem figurada e à variação estilística entre autores.
+
+\vspace{\onelineskip}
+
+\noindent
+\textbf{Palavras-chave}: PLN. Poemas. Fernando Pessoa. Similaridade de Cossenos.
+\end{resumoumacoluna}
+
+\renewcommand{\resumoname}{ABSTRACT}
+\begin{resumoumacoluna}
+	\begin{otherlanguage*}{english}
+		\textit{This work presents the application of fundamental Natural Language Processing (NLP) techniques to a corpus of poems in Portuguese, focusing on the work of Fernando Pessoa and his heteronyms. The dataset used contains 15,543 poems by multiple authors, of which 2,232 are attributed to Fernando Pessoa. Since the heteronyms are not listed as distinct authors in the dataset, a classifier based on literary patterns in the titles was developed. Preprocessing included conversion to lowercase, removal of punctuation and numbers, and elimination of stopwords in Portuguese. Vectorization was performed using TF (CountVectorizer) and TF-IDF (TfidfVectorizer) from the scikit-learn library, which revealed the most relevant terms. Cosine similarity between TF-IDF vectors allowed the retrieval of thematically related poems, demonstrating the effectiveness of the approach for semantic searches. It is concluded that TF-IDF surpasses pure TF in identifying discriminative terms, and that the application of these techniques to poetic texts presents particular challenges related to figurative language and stylistic variation among authors.}
+		\vspace{\onelineskip}
+
+		\noindent
+		\textbf{Keywords}: \textit{PLN. Poems. Fernando Pessoa. Similarity of Cosines.}
+	\end{otherlanguage*}  
+\end{resumoumacoluna}
+
+\textual
+
+\section{\textbf{INTRODUÇÃO}}
+
+O Processamento de Linguagem Natural (PLN) é uma subárea da Inteligência Artificial dedicada ao desenvolvimento de métodos computacionais capazes de analisar, interpretar e representar a linguagem humana. Uma das tarefas mais fundamentais nesse campo é a vetorização de texto, isto é, a transformação de documentos textuais em representações numéricas que algoritmos de aprendizado de máquina possam processar.
+
+Este trabalho documenta a aplicação prática dessas técnicas a um corpus de poemas em língua portuguesa, desenvolvida como atividade avaliativa da disciplina de Processamento de Linguagem Natural, conforme especificado no enunciado da tarefa proposto por \citeonline{alex_task}. O corpus utilizado — \textit{portuguese\_poems.csv} — contém 15.543 poemas de 2.127 autores distintos, com especial ênfase na obra de Fernando Pessoa.
+
+Fernando Pessoa é um caso de estudo particularmente interessante para o PLN porque escreveu sob múltiplos heterônimos — personagens literários com biografias, personalidades e estilos próprios, como Alberto Caeiro, Álvaro de Campos e Ricardo Reis. O fato de o dataset não os listar como autores distintos impôs um desafio adicional, que foi endereçado com o desenvolvimento de um classificador por padrões textuais.
+
+O objetivo geral deste trabalho é aplicar as técnicas de TF (Term Frequency) e TF-IDF (Term Frequency-Inverse Document Frequency) ao corpus de poemas, extrair termos relevantes por autor, analisar bigramas e trigramas representativos, e avaliar a similaridade semântica entre poemas por meio da distância de cosseno.
+
+Esta seção apresenta o contexto e os objetivos do trabalho. As seções seguintes descrevem: o referencial teórico (\autoref{sec:referencial_teorico}), que fundamenta os conceitos explorados; a metodologia adotada (\autoref{sec:metodologia}), detalhando os procedimentos e ferramentas utilizados; os resultados obtidos (\autoref{sec:resultados}), apresentando as análises e discussões dos dados; e as conclusões (\autoref{sec:conclusao}), que sintetizam as contribuições e propõem trabalhos futuros.
+
+\section{\textbf{REFERENCIAL TEÓRICO}}
+\label{sec:referencial_teorico}
+
+Esta seção apresenta os conceitos fundamentais que embasam as análises realizadas neste trabalho, abordando as principais técnicas de representação vetorial de texto e as ferramentas computacionais utilizadas.
+
+\subsection{Pré-processamento de Texto}
+
+O pré-processamento de texto é uma etapa essencial em tarefas de Processamento de Linguagem Natural, sendo responsável por reduzir ruídos e padronizar os dados textuais antes da modelagem. Seu objetivo é garantir que apenas informações relevantes sejam consideradas nas etapas posteriores de análise.
+
+As operações mais comuns incluem a conversão de caracteres para minúsculas, remoção de pontuação e caracteres especiais, eliminação de números e exclusão de \textit{stopwords}, que são palavras de alta frequência e baixo conteúdo semântico, como artigos, preposições e conjunções. Essas técnicas contribuem para a redução da dimensionalidade do vocabulário e para a melhoria da qualidade das representações vetoriais \cite{bird2009nltk}.
+
+Para a língua portuguesa, a biblioteca NLTK (\textit{Natural Language Toolkit}) disponibiliza listas de \textit{stopwords} amplamente utilizadas em tarefas de PLN.
+
+\subsection{TF — Term Frequency}
+
+A métrica TF (\textit{Term Frequency}) é uma das formas mais simples de representar documentos textuais numericamente. Para um termo $t$ em um documento $d$, o TF é definido como a frequência de ocorrência de $t$ em $d$:
+
+\begin{equation}
+TF(t,d) = \frac{f(t,d)}{\sum_{t' \in d} f(t',d)}
+\end{equation}
+
+onde $f(t,d)$ representa o número de ocorrências do termo $t$ no documento $d$.
+
+A representação resultante consiste em uma matriz esparsa de dimensão $|D| \times |V|$, onde $|D|$ é o número de documentos e $|V|$ é o tamanho do vocabulário. Apesar de sua simplicidade, o TF apresenta limitações, pois atribui pesos elevados a termos frequentes em todo o corpus, mesmo quando esses termos não possuem grande poder discriminativo \cite{manning2008ir}.
+
+\subsection{TF-IDF — Term Frequency-Inverse Document Frequency}
+
+O TF-IDF (\textit{Term Frequency-Inverse Document Frequency}) é uma técnica que combina a frequência de um termo em um documento com a sua relevância no corpus como um todo. O objetivo é reduzir o peso de termos muito frequentes e destacar aqueles mais específicos.
+
+O IDF (\textit{Inverse Document Frequency}) é definido como:
+
+\begin{equation}
+IDF(t) = \log \left( \frac{N}{df_t} \right)
+\end{equation}
+
+onde $N$ é o número total de documentos e $df_t$ é o número de documentos que contêm o termo $t$.
+
+O TF-IDF é então dado por:
+
+\begin{equation}
+TFIDF(t,d) = TF(t,d) \times IDF(t)
+\end{equation}
+
+A biblioteca \textit{scikit-learn} implementa essa técnica com normalização L2 por padrão, garantindo que os vetores resultantes possuam norma unitária. Essa propriedade é fundamental para a aplicação de métricas de similaridade, como a similaridade de cosseno \cite{scikit-learn}.
+
+\subsection{N-gramas}
+
+Além da análise baseada em palavras individuais (\textit{unigramas}), é possível considerar sequências de palavras consecutivas, conhecidas como \textit{n-gramas}. Bigramas ($n=2$) e trigramas ($n=3$) permitem capturar padrões linguísticos e expressões recorrentes que não são identificáveis na análise isolada de termos.
+
+Essa abordagem é particularmente relevante em textos literários, onde estruturas e combinações de palavras podem refletir características estilísticas específicas de autores ou escolas literárias \cite{jurafsky2020speech}.
+
+\subsection{Similaridade de Cosseno}
+
+A similaridade de cosseno é uma métrica amplamente utilizada para medir a proximidade entre dois vetores em um espaço vetorial. Para dois vetores $\mathbf{u}$ e $\mathbf{v}$, a similaridade é definida como:
+
+\begin{equation}
+\text{sim}(\mathbf{u}, \mathbf{v}) = \frac{\mathbf{u} \cdot \mathbf{v}}{\|\mathbf{u}\| \|\mathbf{v}\|}
+\end{equation}
+
+Essa medida assume valores entre 0 e 1 quando aplicada a vetores com componentes não negativos, sendo 1 indicativo de máxima similaridade. No contexto de PLN, é amplamente utilizada para comparar documentos representados por vetores TF-IDF, permitindo identificar textos semanticamente semelhantes \cite{manning2008ir}.
+
+\section{\textbf{METODOLOGIA}}
+\label{sec:metodologia}
+
+Esta seção descreve o fluxo de processamento adotado, desde a aquisição do dataset até a análise de similaridade entre poemas. Todas as etapas foram implementadas em Python 3, em notebook executado no ambiente Google Colab, com o uso das bibliotecas \textit{pandas}, \textit{NLTK}, \textit{scikit-learn}, \textit{matplotlib} e \textit{wordcloud} \cite{notebook_colab}.
+
+\subsection{Dataset}
+
+O dataset \textit{portuguese\_poems.csv} foi obtido a partir do repositório disponibilizado na disciplina. Após o carregamento, verificou-se que o conjunto de dados contém 15.543 registros distribuídos em quatro atributos: \textit{Author}, \textit{Title}, \textit{Content} e \textit{Views}.
+
+Inicialmente, foi realizada uma análise exploratória para verificar a distribuição dos autores e a quantidade de poemas por autor, com destaque para Fernando Pessoa, que apresenta a maior representatividade no corpus.
+
+\subsection{Identificação dos Heterônimos de Fernando Pessoa}
+
+Como o dataset não distingue explicitamente os heterônimos de Fernando Pessoa, foi desenvolvida uma abordagem heurística baseada em padrões textuais presentes nos títulos dos poemas.
+
+A classificação foi realizada por meio de regras definidas manualmente, considerando expressões características associadas a cada heterônimo, tais como:
+
+\begin{itemize}
+    \item Álvaro de Campos: presença de termos como ``tabacaria'', ``ode triunfal'', ``ode marítima'';
+    \item Ricardo Reis: expressões como ``vem sentar-te comigo'', ``prefiro rosas'', ``lídia'';
+    \item Alberto Caeiro: padrões como ``guardador de rebanhos'', ``pastor amoroso'';
+    \item Alexander Search: identificação de títulos em língua inglesa;
+    \item Ortônimo: poemas reconhecidos da obra do autor.
+\end{itemize}
+
+Os poemas que não atenderam a nenhum dos critérios foram classificados como ``não identificado''. Essa etapa permitiu segmentar parcialmente o corpus de Fernando Pessoa, viabilizando análises comparativas entre estilos literários.
+
+\subsection{Pré-processamento de Texto}
+
+O pré-processamento foi aplicado aos textos dos poemas com o objetivo de reduzir ruídos e padronizar o conteúdo textual. As etapas realizadas foram:
+
+\begin{itemize}
+    \item conversão de todos os caracteres para minúsculas;
+    \item remoção de caracteres não alfabéticos por meio de expressões regulares;
+    \item normalização de espaços em branco;
+    \item tokenização dos textos;
+    \item remoção de \textit{stopwords} da língua portuguesa com auxílio da biblioteca NLTK.
+\end{itemize}
+
+O resultado desse processo foi um conjunto de textos limpos e padronizados, adequados para as etapas de vetorização.
+
+\subsection{Vetorização}
+
+A representação vetorial dos textos foi realizada utilizando os modelos \textit{CountVectorizer} e \textit{TfidfVectorizer}, ambos da biblioteca \textit{scikit-learn}.
+
+O \textit{CountVectorizer} foi utilizado para obter a frequência absoluta dos termos (TF), enquanto o \textit{TfidfVectorizer} foi empregado para gerar representações ponderadas (TF-IDF). Em ambos os casos, foram adotadas as seguintes configurações:
+
+\begin{itemize}
+    \item conversão automática para minúsculas (\textit{lowercase=True});
+    \item remoção de \textit{stopwords};
+    \item limitação do vocabulário aos 500 termos mais frequentes (\textit{max\_features=500}).
+\end{itemize}
+
+Adicionalmente, foram geradas representações com n-gramas, incluindo bigramas ($n=2$) e trigramas ($n=3$), com o objetivo de capturar padrões linguísticos mais complexos presentes nos textos.
+
+A vetorização foi aplicada tanto ao corpus completo quanto a subconjuntos específicos, como os poemas de Fernando Pessoa e seus heterônimos.
+
+\subsection{Análise de Similaridade}
+
+A análise de similaridade entre poemas foi realizada com base nos vetores TF-IDF, utilizando a métrica de similaridade de cosseno, implementada pela função \textit{cosine\_similarity} da biblioteca \textit{scikit-learn}.
+
+A partir da matriz de similaridade gerada, foi possível identificar, para um poema de referência, os documentos mais semelhantes no corpus. Para fins de análise, foram selecionados os cinco poemas mais similares, permitindo avaliar a proximidade semântica entre diferentes textos e autores.
+
+Essa abordagem possibilitou investigar padrões de similaridade textual, bem como validar a eficácia das técnicas de representação vetorial aplicadas.
+
+\section{\textbf{RESULTADOS}}
+\label{sec:resultados}
+
+O corpus analisado é composto por 15.543 poemas de 2.127 autores distintos. Fernando Pessoa é o autor mais representado, com 2.232 poemas, correspondendo a aproximadamente 14,4\% do total. Observa-se uma distribuição altamente assimétrica da produção literária: 1.824 dos autores possui menos de 10 poemas, enquanto que 303 autores possuem 10 ou mais poemas e que concentra uma parcela significativa do corpus.
+
+Em relação à extensão dos textos, verificou-se grande variabilidade no número de tokens por poema. A maior concentração de tokens encontra-se na faixa de 100 a 199 tokens, e menores concentração de poemas em maiores faixas de tokens.
+
+\subsection{Pré-processamento}
+
+O pré-processamento resultou em uma redução média de 40,8\% da quantidade de tokens nos textos. Para poemas com 100 a 199 tokens a redução foi de 40,3\%  ou a maior redução em absoluto de 252.826 tokens, e a faixa de maior redução relativa foi a faixa de 2300 a 2399 tokens com uma redução de de 56.6\%, porém havia apenas 1 poema nessa faixa.
+
+De forma geral, o processo reduziu substancialmente o vocabulário efetivo, eliminando termos de alta frequência e baixo conteúdo semântico, o que contribui para a melhoria da qualidade das representações vetoriais.
+
+\subsection{Análise de N-gramas}
+
+Verificar resultados no arquivo pln\_task1.ipynb.
+
+\subsection{Termos Mais Relevantes (TF-IDF)}
+
+A Tabela~\ref{tab:tfidf} apresenta os dez termos com maior valor acumulado de TF-IDF no corpus geral e no subconjunto de heterônimos de Fernando Pessoa.
+
+\begin{table}[H]
+\centering
+\caption{Top 10 termos por TF-IDF — Corpus Geral e Heterônimos}
+\label{tab:tfidf}
+\begin{tabular}{l r l r}
+\hline
+\textbf{Termo (Geral)} & \textbf{Score} & \textbf{Termo (Heterônimos)} & \textbf{Score} \\
+\hline
+amor   & 514,76 & deuses  & 7,74 \\
+vida   & 514,15 & vida    & 6,51 \\
+tudo   & 428,42 & nada    & 5,58 \\
+onde   & 420,84 & tudo    & 4,57 \\
+noite  & 418,28 & destino & 4,41 \\
+mim    & 398,03 & mim     & 4,33 \\
+olhos  & 387,83 & porque  & 3,91 \\
+dia    & 379,50 & sempre  & 3,73 \\
+tão    & 352,12 & campos  & 3,54 \\
+mar    & 350,10 & coisas  & 3,13 \\
+\hline
+\end{tabular}
+\par\vspace{2pt}
+{\footnotesize Fonte: Elaborado pelo autor.}
+\end{table}
+
+Observa-se que termos como ``amor'', ``vida'' e ``tudo'' apresentam alta relevância no corpus geral, refletindo temas recorrentes na literatura poética. No subconjunto dos heterônimos Alberto Caeiro, Álvaro de Campos e Ricardo Reis, destaca-se os termos ``deuses'', ``vida'' e ``nada'', que apresenta semelhanças e diferenças.
+
+\subsection{Análise de Similaridade entre Poemas}
+
+alterar.
+
+\bookmarksetup{startatroot}% 
+
+\section{\textbf{CONCLUSÃO}}
+\label{sec:conclusao}
+
+alterar.
+
+\postextual
+
+\section*{\textbf{REFERÊNCIAS}}
+
+\renewcommand{\bibname}{}
+
+\bibliography{bibliografia}
+
+\renewcommand{\glossaryname}{\textbf{GLOSSÁRIO}}
+\renewcommand{\glossarypreamble}{
+	Elemento opcional. Deve ser elaborado em ordem alfabética.\\ \\
+}
+
+\setglossarystyle{tree}
+
+\printglossaries
+
+\vspace{\onelineskip}
+\vspace{\onelineskip}
+
+\chapter*{\textbf{APÊNDICE A – TÍTULO DO APÊNDICE}}
+
+O apêndice é elaborado pelo autor e é um elemento opcional. O apêndice deve ser identificado seguindo esta ordem: a palavra "Apêndice", acompanhada de uma letra maiúscula em sequência alfabética, seguida de um travessão e do respectivo título. O formato deve manter o destaque tipográfico das seções primárias e ser centralizado, conforme as diretrizes da ABNT NBR 6024. Caso as 26 letras do alfabeto sejam esgotadas, utilizam-se letras maiúsculas dobradas para a identificação dos apêndices.
+
+\vspace{\onelineskip}
+
+\cftinserthook{toc}{AAA}
+
+\chapter*{\textbf{ANEXO A – TÍTULO DO ANEXO}}
+
+O anexo é elaborado pelo autor e é um elemento opcional. O anexo deve ser identificado na seguinte ordem: a palavra "Anexo", seguida de uma letra maiúscula em sequência alfabética, um travessão e o respectivo título. A formatação deve manter o destaque tipográfico das seções primárias e ser centralizada, conforme as normas da ABNT NBR 6024. Caso todas as 26 letras do alfabeto sejam utilizadas, empregam-se letras maiúsculas dobradas para a identificação dos anexos.
+
+\end{document}
